@@ -78,16 +78,20 @@ public class App {
             editHero.update(newName,newAge,newPower,newWeakness);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
+        //get method to delete a hero based on the id of the individual Hero
+        get("/heroes/:id/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfHeroToDelete = Integer.parseInt(req.params("id")); //the id should match route segment
+            Hero deleteHero = Hero.findById(idOfHeroToDelete); //use it to find the spec hero
+            deleteHero.deleteHero();
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
 //        Squad section
 
 
 
-        //get method : to display new squad form
-        get("/squads/newSquads", (req,res)->{
-            Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "squads-form.hbs");
-        }, new HandlebarsTemplateEngine());
+
         //squad post method to update squad data in the server from the form
         post("/squads/newSquads", (request, response) -> { //URL to make new hero on Squad route
             Map<String, Object> model = new HashMap<>();
