@@ -11,7 +11,13 @@ import static spark.Spark.*;
 
 
 public class App {
-
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
 
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
@@ -19,12 +25,7 @@ public class App {
 
 
 
-        //get method for displaying a new Hero form
-        get("/heroes/newHero", (req,res)->{
-            Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "hero-form.hbs");
-        }, new HandlebarsTemplateEngine());
-        //post method to process new Hero form
+
         post("/heroes/newHero", (request, response) -> { //URL to make new hero on POST route
             Map<String, Object> model = new HashMap<>();
             String name = request.queryParams("name");
