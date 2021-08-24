@@ -91,17 +91,13 @@ public class App {
 
 
 
-
-        //squad post method to update squad data in the server from the form
-        post("/squads/newSquads", (request, response) -> { //URL to make new hero on Squad route
+        //get method : to display new squad form
+        get("/squads/newSquads", (req,res)->{
             Map<String, Object> model = new HashMap<>();
-            String squadName = request.queryParams("squadName");
-            int maxSize = Integer.parseInt(request.queryParams("maxSize"));
-            String cause = request.queryParams("cause");
-            Squads newSquad = new Squads(squadName,maxSize,cause);
-            model.put("squad", newSquad);
-            return new ModelAndView(model, "squadsSuccess.hbs");
+            return new ModelAndView(model, "squads-form.hbs");
         }, new HandlebarsTemplateEngine());
+        //squad post method to update squad data in the server from the form
+
 
         //get method to display all Squads
         get("/squads/squadsList", (req, res) -> {
