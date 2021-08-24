@@ -42,16 +42,15 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-        /
-
-        //get method taht displays the specific hero based on the id of  individual Hero
-        get("/heroes/:id", (req, res) -> {
+        //get method that displays all  Heroes
+        get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHeroToFind = Integer.parseInt(req.params(":id")); //pull id - must match route segment
-            Hero heroFound = Hero.findById(idOfHeroToFind); //use it to find hero
-            model.put("hero", heroFound); //add it to model for template to display
-            return new ModelAndView(model, "hero-detail.hbs"); //individual post page.
+            ArrayList<Hero> allHeroes = Hero.getAll();
+            model.put("heroes", allHeroes);
+            return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
+
+
         //get: show a form to update a Hero
         get("/heroes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
