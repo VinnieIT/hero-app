@@ -50,15 +50,15 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-
-        //get: show a form to update a Hero
-        get("/heroes/:id/update", (req, res) -> {
+        //get method taht displays the specific hero based on the id of  individual Hero
+        get("/heroes/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHeroToEdit = Integer.parseInt(req.params("id"));
-            Hero editHero = Hero.findById(idOfHeroToEdit);
-            model.put("editHero", editHero);
-            return new ModelAndView(model, "hero-form.hbs");
+            int idOfHeroToFind = Integer.parseInt(req.params(":id")); //pull id - must match route segment
+            Hero heroFound = Hero.findById(idOfHeroToFind); //use it to find hero
+            model.put("hero", heroFound); //add it to model for template to display
+            return new ModelAndView(model, "hero-detail.hbs"); //individual post page.
         }, new HandlebarsTemplateEngine());
+
         //post method to send updated form data to the server to update a Hero
         post("/heroes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
