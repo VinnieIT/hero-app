@@ -25,17 +25,13 @@ public class App {
 
 
 
-
-        post("/heroes/newHero", (request, response) -> { //URL to make new hero on POST route
+        //get method for displaying a new Hero form
+        get("/heroes/newHero", (req,res)->{
             Map<String, Object> model = new HashMap<>();
-            String name = request.queryParams("name");
-            int age = Integer.parseInt(request.queryParams("age"));
-            String heroPower = request.queryParams("heroPower");
-            String weakness = request.queryParams("weakness");
-            Hero newHero = new Hero(name,age,heroPower,weakness);
-            model.put("hero", newHero);
-            return new ModelAndView(model, "success.hbs");
+            return new ModelAndView(model, "hero-form.hbs");
         }, new HandlebarsTemplateEngine());
+        //post method to process new Hero form
+
 
         //get method that displays all  Heroes
         get("/", (req, res) -> {
