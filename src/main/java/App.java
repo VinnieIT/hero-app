@@ -66,13 +66,16 @@ public class App {
             model.put("editHero", editHero);
             return new ModelAndView(model, "hero-form.hbs");
         }, new HandlebarsTemplateEngine());
-
-        //get method to delete a hero based on the id of the individual Hero
-        get("/heroes/:id/delete", (req, res) -> {
+        //post method to send updated form data to the server to update a Hero
+        post("/heroes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            int idOfHeroToDelete = Integer.parseInt(req.params("id")); //the id should match route segment
-            Hero deleteHero = Hero.findById(idOfHeroToDelete); //use it to find the spec hero
-            deleteHero.deleteHero();
+            String newName = req.queryParams("name");
+            int newAge = Integer.parseInt(req.queryParams("age"));
+            String newPower = req.queryParams("heroPower");
+            String newWeakness = req.queryParams("weakness");
+            int idOfHeroToEdit = Integer.parseInt(req.params("id"));
+            Hero editHero = Hero.findById(idOfHeroToEdit);
+            editHero.update(newName,newAge,newPower,newWeakness);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
