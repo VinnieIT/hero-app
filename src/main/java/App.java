@@ -31,15 +31,18 @@ public class App {
             return new ModelAndView(model, "hero-form.hbs");
         }, new HandlebarsTemplateEngine());
         //post method to process new Hero form
-
-
-        //get method that displays all  Heroes
-        get("/", (req, res) -> {
+        post("/heroes/newHero", (request, response) -> { //URL to make new hero on POST route
             Map<String, Object> model = new HashMap<>();
-            ArrayList<Hero> allHeroes = Hero.getAll();
-            model.put("heroes", allHeroes);
-            return new ModelAndView(model, "index.hbs");
+            String name = request.queryParams("name");
+            int age = Integer.parseInt(request.queryParams("age"));
+            String heroPower = request.queryParams("heroPower");
+            String weakness = request.queryParams("weakness");
+            Hero newHero = new Hero(name,age,heroPower,weakness);
+            model.put("hero", newHero);
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
+
+        /
 
         //get method taht displays the specific hero based on the id of  individual Hero
         get("/heroes/:id", (req, res) -> {
