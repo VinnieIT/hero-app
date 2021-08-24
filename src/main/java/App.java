@@ -58,19 +58,15 @@ public class App {
             model.put("hero", heroFound); //add it to model for template to display
             return new ModelAndView(model, "hero-detail.hbs"); //individual post page.
         }, new HandlebarsTemplateEngine());
-
-        //post method to send updated form data to the server to update a Hero
-        post("/heroes/:id/update", (req, res) -> {
+        //get: show a form to update a Hero
+        get("/heroes/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            String newName = req.queryParams("name");
-            int newAge = Integer.parseInt(req.queryParams("age"));
-            String newPower = req.queryParams("heroPower");
-            String newWeakness = req.queryParams("weakness");
             int idOfHeroToEdit = Integer.parseInt(req.params("id"));
             Hero editHero = Hero.findById(idOfHeroToEdit);
-            editHero.update(newName,newAge,newPower,newWeakness);
-            return new ModelAndView(model, "success.hbs");
+            model.put("editHero", editHero);
+            return new ModelAndView(model, "hero-form.hbs");
         }, new HandlebarsTemplateEngine());
+
         //get method to delete a hero based on the id of the individual Hero
         get("/heroes/:id/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
