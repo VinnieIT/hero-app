@@ -75,7 +75,7 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <configuration>
                     <processTypes>
-                        <web>java -jar target/hero-squad23-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
+                        <web>java -jar target/heroappvin-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
