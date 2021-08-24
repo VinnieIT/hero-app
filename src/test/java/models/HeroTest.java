@@ -5,17 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HeroTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void getName() {
@@ -64,25 +60,36 @@ class HeroTest {
 
     @Test
     void getPublished() {
+        Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
+        Assertions.assertEquals(false, hero.getPublished() );
+
     }
 
     @Test
     void getCreatedAt() {
+        Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd:MM:yyyy HH:mm");
+        LocalDateTime Date = LocalDateTime.now();
+        String createdAt = Date.format(format);
+        Assertions.assertEquals(createdAt,hero.getCreatedAt()  );
     }
 
     @Test
     void getId() {
+        Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
+        Assertions.assertEquals(1, hero.getId() );
     }
 
     @Test
     void findById() {
+        Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
+        Hero hero2 = new Hero("James", 18, "SuperDrinker", "Sobriety");
+        assertEquals(2,Hero.findById(hero2.getId()).getId());
     }
 
-    @Test
-    void update() {
-    }
-
-    @Test
-    void deleteHero() {
-    }
+//    @Test
+//    void update() {
+//
+//
+//    }
 }
