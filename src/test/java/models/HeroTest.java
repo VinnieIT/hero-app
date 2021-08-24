@@ -12,41 +12,33 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HeroTest {
 
-    @BeforeEach
-    private Hero setUpHero() {
-        return new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void getName() {
-        Hero hero = setUpHero();
+        Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
         String name = hero.getName();
-        Assertions.assertTrue(true,name );
+        Assertions.assertEquals("Vincent", name );
     }
 
     @Test
     void getAge() {
-        Hero hero = setUpHero();
+        Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
         String age = hero.getWeakness();
-        Assertions.assertTrue(true,age );
+        Assertions.assertEquals(22, age );
     }
 
     @Test
     void getHeroPower() {
         Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
         String power = hero.getHeroPower();
-        Assertions.assertTrue(true,power );
+        Assertions.assertEquals("SuperSpreader", power );
     }
 
     @Test
     void getWeakness() {
         Hero hero = new Hero("Vincent", 22, "SuperSpreader", "Vaccine");
         String weakness = hero.getWeakness();
-        Assertions.assertTrue(true,weakness );
+        Assertions.assertEquals("Vaccine", weakness );
     }
 
     @Test
