@@ -1,0 +1,29 @@
+{{#partial "content"}}
+    <div class="card text-center">
+      <h5 class="card-header">Squad</h5>
+      <div class="card-body">
+        <h5 class="card-title">Squad Name : {{ squad.squadName }}</h5>
+        <h5 class="card-title">Squad Size : {{ squad.maxSize }}</h5>
+        <h5 class="card-title">Squad Mission : {{ squad.cause }}</h5>
+      </div>
+      <div class="card-body">
+          <h5 class="card-title">Created At:</h5>
+          <p class="card-text">Time Stamp{{ squad.createdAt }}</p>
+      </div>
+      <div class="card-body">
+            <h5 class="card-title">Squad Status:</h5>
+            <h5>
+                {{#if squad.published }}
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"> Published</span><br><br>
+                {{else}}
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">Draft</span> <br><br>
+                {{/if}}
+
+                <button type="button" class="btn btn-outline-info"> <a href="/squads/{{squad.id}}/update">Edit this Squad</a></button><br>
+                <button type="button" class="btn btn-outline-danger"> <a href="/squads/{{squad.id}}/delete">DELETE this Squad </a></button>
+            </h5>
+      </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}

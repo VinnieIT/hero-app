@@ -1,0 +1,25 @@
+
+{{#partial "content"}}
+
+    <div class="container">
+        {{#if squads}}
+            <h1>Squad list!</h1>
+                {{#each squads }}
+                  <h3>Squad</h3>
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ squadName }}</h5>
+                    <p class="card-text">{{ maxSize }}</p>
+                     <p class="card-text">{{ cause }}</p>
+                    <a href="/squads/{{id}}" class="card-link">more</a>
+
+                  </div>
+                </div>
+                {{/each}}
+        {{else}}
+            <p class= "text-center"><strong>No Squads registered Yet!</strong></p>
+        {{/if}}
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}

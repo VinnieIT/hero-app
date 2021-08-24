@@ -1,5 +1,6 @@
 package models;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Hero {
@@ -8,17 +9,19 @@ public class Hero {
         private int age;
         private String heroPower;
         private String weakness;
-        private static ArrayList<Hero> h_instances = new ArrayList<>();
+        private static ArrayList<Hero> h_instances = new ArrayList<Hero>();
         private boolean published;
-        private LocalDateTime createdAt;
+        private String createdAt;
         private int id;
-        public Hero(String name, int age, String power, String weakness){
+        public Hero(String name, int age, String heroPower, String weakness){
             this.name = name;
             this.age = age;
-            this.heroPower = power;
+            this.heroPower = heroPower;
             this.weakness = weakness;
             this.published = false;
-            this.createdAt = LocalDateTime.now();
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd:MM:yyyy HH:mm");
+            LocalDateTime Date = LocalDateTime.now();
+            this.createdAt = Date.format(format);
             h_instances.add(this);
             this.id = h_instances.size();
         }
@@ -43,7 +46,7 @@ public class Hero {
         public boolean getPublished(){
             return this.published;
         }
-        public LocalDateTime getCreatedAt(){
+        public String getCreatedAt(){
             return createdAt;
         }
         public int getId(){

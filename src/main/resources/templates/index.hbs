@@ -1,0 +1,37 @@
+{{#partial "content"}}
+    <div class="container">
+        {{#if heroes}}
+            <h1>Hero list!</h1>
+            {{#each heroes }}
+
+                <p>HERO</p>
+                <div class="card" style="width: 18rem;">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> Name: {{name}}</li>
+                    <li class="list-group-item">Age: {{age}}</li>
+                    <li class="list-group-item">Power: {{power}} </li>
+                    <li class="list-group-item">Weakness: {{weakness}}  </li>
+                  </ul>
+                  <button type="button" class="btn btn-outline-info"><a  href="/squads/newSquads">Add hero to squad</a></button>
+                  <button type="button" class="btn btn-outline-info"> <a href="/heroes/{{id}}">Hero details </a></button>
+                </div>
+
+            {{/each}}
+        {{else}}
+            <p class ="text-center no-heroes"><strong>No Heroes registered Yet!</strong></p><br>
+            <h4 class = "text-center"> Who is a Hero ?</h4>
+            <p class = "text-center">What characteristics or qualities make a person a hero? <br> Is there a hero gene? <br>According to one recent study, the answer might rest in what type of heroism we are addressing.<br><br>
+
+
+               According to a paper published in 2010, researchers have found that people who had engaged in one-time acts of bravery <br>(like rushing into a burning building or rescuing someone from the path of an oncoming train)<br> are not necessarily that much different from control groups of non-heroes.<br><br>
+
+               By contrast, people who engage in lifelong heroism (such as professional nurses who regularly comfort the sick and dying) <br>do share a number of important personality traits such as empathy, nurturance, and a need to live by a moral code.</p><br><br>
+             <h4 class = "text-center"> Qualities your hero should have</h4>
+            <p class = "text-center">Acting voluntarily for the service of others who are in need, whether it is for an individual, a group, or a community</p><br>
+            <p class = "text-center"> Performing actions without any expectation of reward or external gain</p><br>
+            <p class = "text-center"> Recognition and acceptance of the potential risk or sacrifice made by taking heroic actions</p>   <br>
+            {{/if}}
+    </div>
+
+{{/partial}}
+{{> layout.hbs}}

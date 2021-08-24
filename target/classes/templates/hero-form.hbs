@@ -1,0 +1,47 @@
+
+{{#partial "content"}}
+    {{#if editHero}}
+        <h1>Edit this Hero!</h1>
+        <form action="/heroes/{{editHero.id}}/update" method="post">
+            <div class="form-group">
+            <label for="name">Edit this hero's content</label><br>
+            <input id="name" class="form-control" name="name" type="text" value="{{editHero.name}}" required><br>
+            </div>
+            <div class="form-group">
+            <label for="age">Hero Age</label><br>
+            <input id="age" class="form-control" name="age" type="number" value="{{editHero.age}}"required><br>
+            </div>
+            <div class="form-group">
+            <label for="power">Hero Power</label><br>
+            <input id="power" class="form-control" name="power" type="text" value="{{editHero.heroPower}}" required><br>
+            </div>
+            <div class="form-group">
+            <label for="weakness">Hero Weakness</label><br>
+            <input id="weakness" class="form-control" name="weakness" type="text" value="{{editHero.weakness}}" required><br><br>
+            </div>
+    {{else}}
+         <h1>Add a new Hero!</h1>
+
+         <form action="/heroes/newHero" method="POST">
+            <div class="form-group">
+            <label for="name">Hero Name</label><br>
+            <input class="form-control" id="name" name="name" type="text" required><br>
+            </div>
+            <div class="form-group">
+            <label for="age">Hero Age</label><br>
+            <input class="form-control" id="age" name="age" type="number" required><br>
+            </div>
+            <div class="form-group">
+            <label for="heroPower">Hero Power</label><br>
+            <input  class="form-control" id="heroPower" name="heroPower" type="text" required><br>
+            </div>
+            <div class="form-group">
+            <label for="weakness">Hero Weakness</label><br>
+            <input class="form-control" id="weakness" name="weakness" type="text" required><br><br>
+            </div>
+    {{/if}}
+            <button type="submit" class="btn btn-default">Create Hero</button>
+         </form>
+{{/partial}}
+
+{{> layout.hbs}}
