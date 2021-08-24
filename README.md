@@ -1,4 +1,4 @@
-#Hero Squad
+##Hero Squad
 By Vincent Mwangi Inc.
 ##Description
 Hero Squad is a project that allows users to develop a squads of your favorite superheroes.
