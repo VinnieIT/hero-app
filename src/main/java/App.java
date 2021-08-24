@@ -108,16 +108,16 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get method to display all Squads
+        get("/squads/squadsList", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Squads> allSquads = Squads.getAll();
+            model.put("squads", allSquads);
 
+            return new ModelAndView(model, "squads.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //get method to display an individual Squad
-        get("/squads/:id", (req, res) -> {
-            Map<String, Object> model = new HashMap<>();
-            int idOfSquadToFind = Integer.parseInt(req.params(":id")); //pull id - must match route segment
-            Squads foundSquad = Squads.findById(idOfSquadToFind); //use it to find post
-            model.put("squad", foundSquad); //add it to model for template to display
-            return new ModelAndView(model, "squad-details.hbs"); //individual post page.
-        }, new HandlebarsTemplateEngine());
+
         //get method to present the form for updating a squad based on the id
         get("/squads/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
